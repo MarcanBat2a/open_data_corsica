@@ -22,7 +22,19 @@ def get_all_gare_to_dict()->dict[Gare]:
     return dict_gares
 
 
+def get_commune_for_all_gare()->dict[Gare]:
+    list_gares = get_all_gare()
+    dict_gares = {}
+    for gare in list_gares:
+        response = requests.get('https://geo.api.gouv.fr/communes?lat='+str(gare.location[0])+'&lon='+str(gare.location[1])+'&fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&format=json&geometry=centre')
+        for records in response.json():
+            gare.commune = Commune(records.get('nom'), records.get('code'), records.get('codesPostaux'), records.get('codeDepartement'), records.get('codeRegion'), records.get('population'))
+            dict_gares[gare.get('stop_id')] = gare
+    return gare
+
+
 def get_commune_by_gare(gare:Gare)->Gare:
+    
     response = requests.get('https://geo.api.gouv.fr/communes?lat='+str(gare.location[0])+'&lon='+str(gare.location[1])+'&fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&format=json&geometry=centre')
     for records in response.json():
         gare.commune = Commune(records.get('nom'), records.get('code'), records.get('codesPostaux'), records.get('codeDepartement'), records.get('codeRegion'), records.get('population'))

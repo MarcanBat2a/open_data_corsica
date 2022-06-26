@@ -14,8 +14,7 @@ def read_gares():
 
 @router.get("/communes")
 def read_gares_communes():
-    list_gares = gare_services.get_all_gare()
-    return gare_services.get_commune_by_gare(list_gares)
+    return gare_services.get_commune_for_all_gare()
 
 
 @router.get("/export")
