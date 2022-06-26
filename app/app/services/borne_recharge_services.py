@@ -1,6 +1,6 @@
 import requests
-from app.model.borne_recharge_model import Borne
-from app.model.commune_model import Commune
+from app.app.model.borne_recharge_model import Borne
+from app.app.model.commune_model import Commune
 
 def get_all_borne()->list[Borne]:
     list_bornes = []

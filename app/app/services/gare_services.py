@@ -1,6 +1,6 @@
 import requests
-from app.model.gare_model import Gare
-from app.model.commune_model import Commune
+from app.app.model.gare_model import Gare
+from app.app.model.commune_model import Commune
 
 def get_all_gare()->list[Gare]:
     list_gares = []

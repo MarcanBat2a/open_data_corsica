@@ -1,8 +1,8 @@
 import requests
-from app.services import gare_services, borne_recharge_services
-from app.model.commune_model import Commune
-from app.model.gare_model import Gare
-from app.model.borne_recharge_model import Borne
+from app.app.services import gare_services, borne_recharge_services
+from app.app.model.commune_model import Commune
+from app.app.model.gare_model import Gare
+from app.app.model.borne_recharge_model import Borne
 
 def get_all_communes()->dict[Commune]:
     dict_communes = {}
