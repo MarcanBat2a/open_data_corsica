@@ -26,3 +26,12 @@ def get_bornes_for_all_commune(dict_communes:dict[Commune], list_bornes:list[Bor
         if dict_communes.get(borne.code_insee) != None:
             dict_communes[borne.code_insee]["list_bornes"].append(borne.to_dict())
     return dict_communes
+
+
+def get_communes_by_location(location:list[float])->dict[Commune]:
+    dict_communes = {}
+    response = requests.get('https://geo.api.gouv.fr/communes?lat='+str(location[0])+'&lon='+str(location[1])+'&fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&format=json&geometry=polygon')
+    for records in response.json():
+        dict_communes[records.get('code')] = Commune(records.get('nom'), records.get('code'), records.get('codesPostaux'), records.get('codeDepartement'), records.get('codeRegion'), records.get('population')).to_dict()
+    
+    return dict_communes

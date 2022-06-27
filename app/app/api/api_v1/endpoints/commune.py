@@ -14,6 +14,12 @@ def read_communes():
     return dict_commmune
 
 
+@router.get("/{location}")
+def read_communes_by_location(location: list[float]):
+    dict_commmune = commune_services.get_communes_by_location(location)
+    return dict_commmune
+
+
 @router.get("/gares")
 def read_communes_gares():
     list_gares = gare_services.get_all_gare()
