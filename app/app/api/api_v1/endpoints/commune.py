@@ -15,7 +15,7 @@ def read_communes():
 
 
 @router.get("/{location}")
-def read_communes_by_location(location: list[float]):
+def read_communes_by_location(location):
     dict_commmune = commune_services.get_communes_by_location(location)
     return dict_commmune
 

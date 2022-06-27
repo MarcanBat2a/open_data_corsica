@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.app.api.api_v1.endpoints import borne, commune, gare, care
+from app.app.api.api_v1.endpoints import commune, gare, care
 
 api_router = APIRouter()
 api_router.include_router(commune.router, prefix="/communes", tags=["Communes"])
