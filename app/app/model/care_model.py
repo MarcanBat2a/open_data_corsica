@@ -1,4 +1,4 @@
-class Gare():
+class Care():
     def __init__(self, location_type:str, stop_id:str, stop_coordinates:list[float], stop_code:str, stop_name:str) -> None:
         self.location_type = location_type
         self.stop_id = stop_id
