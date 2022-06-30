@@ -7,7 +7,7 @@ def get_all_care()->list[Care]:
     response = requests.get('https://www.data.corsica/api/records/1.0/search/?dataset=horaires-cars2a-gtfs&q=&rows=1000&facet=stop_name')
     for records in response.json().get('records'):
         care = records.get('fields')
-        list_cares.append(care(care.get("location_type"), care.get("stop_id"), care.get("stop_coordinates"), care.get("stop_code"), care.get("stop_name")))
+        list_cares.append(Care(care.get("location_type"), care.get("stop_id"), care.get("stop_coordinates"), care.get("stop_code"), care.get("stop_name")))
     return list_cares
 
 
@@ -16,7 +16,7 @@ def get_all_care_to_dict()->dict[Care]:
     response = requests.get('https://www.data.corsica/api/records/1.0/search/?dataset=horaires-cars2a-gtfs&q=&rows=1000&facet=stop_name')
     for records in response.json().get('records'):
         care = records.get('fields')
-        dict_cares[care.get('stop_id')] = care(care.get("location_type"), care.get("stop_id"), care.get("stop_coordinates"), care.get("stop_code"), care.get("stop_name")).to_dict()
+        dict_cares[care.get('stop_id')] = Care(care.get("location_type"), care.get("stop_id"), care.get("stop_coordinates"), care.get("stop_code"), care.get("stop_name")).to_dict()
 
     return dict_cares
 
