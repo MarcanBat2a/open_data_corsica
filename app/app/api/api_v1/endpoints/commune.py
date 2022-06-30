@@ -54,7 +54,7 @@ def export_comment(extension:str):
                                 media_type="text/csv"
         )
         response.headers["Content-Disposition"] = "attachment; filename=data.csv"
-    elif extension.lower()=="excel":
+    elif extension.lower()=="xlsx":
         stream = io.BytesIO()
         writer = pd.ExcelWriter(stream, engine='xlsxwriter')
         dataframe_result = pd.DataFrame(data=dict_commmune.values())
