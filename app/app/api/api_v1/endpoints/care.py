@@ -30,7 +30,7 @@ def export_comment(extension:str):
         response.headers["Content-Disposition"] = "attachment; filename=data.csv"
     elif extension.lower()=="excel":
         stream = io.BytesIO()
-        writer = pd.ExcelWriter(stream, engine='xls')
+        writer = pd.ExcelWriter(stream, engine='xlsxwriter')
         dataframe_result = pd.DataFrame(data=care_services.get_all_care())
         dataframe_result.to_excel(writer, index = False)
         writer.save()
